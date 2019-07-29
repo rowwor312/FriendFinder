@@ -20,7 +20,7 @@ module.exports = function(app) {
 		// Compute Match
 		var matchName = '';
 		var matchImage = '';
-		var totalDifference = 10000;
+		var totalDifference = 40;
 
 		// Examine all existing friends in the list
 		for (var i = 0; i < friends.length; i++) {
