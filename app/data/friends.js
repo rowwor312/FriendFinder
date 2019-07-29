@@ -1,6 +1,7 @@
+// Data Structure - Friends Data
 var friendsArray = [
-    {
-		name: "Spike Spiegel - Cowboy Bebop",
+	    {
+		name: 'Spike Spiegel',
 		photo: 'http://s3.zerochan.net/Spike.Spiegel.240.1833372.jpg',
 		scores: [
 			'5',
@@ -16,7 +17,7 @@ var friendsArray = [
 		]
 	},
 	{
-		name: 'Vicious - Cowboy Bebop',
+		name: 'Vicious',
 		photo: 'https://s3.zerochan.net/Vicious.240.120212.jpg',
 		scores: [
 			'1',
@@ -32,7 +33,7 @@ var friendsArray = [
 		]
 	},
 	{
-		name: 'Faye Valentine - Cowboy Bebop',
+		name: 'Faye Valentine',
 		photo: 'http://s3.zerochan.net/Faye.Valentine.240.458564.jpg',
 		scores: [
 			'4',
@@ -48,7 +49,7 @@ var friendsArray = [
 		]
 	},
 	{
-		name: 'Edward - Cowboy Bebop',
+		name: 'Edward',
 		photo: 'https://s3.zerochan.net/Edward.Wong.Hau.Pepelu.Tivrusky.IV.240.1221072.jpg',
 		scores: [
 			'5',
@@ -64,7 +65,7 @@ var friendsArray = [
 		]
 	},
 	{
-		name: 'Jet - Cowboy Bebop',
+		name: 'Jet',
 		photo: 'http://s3.zerochan.net/Jet.Black.240.1170600.jpg',
 		scores: [
 			'5',
@@ -79,8 +80,6 @@ var friendsArray = [
 			'5'
 		]
 	}
-
-];
+]
 
 module.exports = friendsArray;
-  
