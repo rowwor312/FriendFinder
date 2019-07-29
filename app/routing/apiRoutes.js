@@ -1,6 +1,6 @@
 var path = require('path');
 
-var friends = require('../data/friends.js').default;
+var friends = require('../data/friends.js');
 
 // Export API Routes
 module.exports = function(app) {
@@ -20,7 +20,7 @@ module.exports = function(app) {
 		// Compute Match
 		var matchName = '';
 		var matchImage = '';
-		var totalDifference = 1000;
+		var totalDifference = 10000;
 
 		// Examine all existing friends in the list
 		for (var i = 0; i < friends.length; i++) {
