@@ -1,6 +1,5 @@
-var path = require('path');
-
 var friends = require('../data/friends.js');
+var path = require('path');
 
 // Export API Routes
 module.exports = function(app) {
@@ -14,13 +13,12 @@ module.exports = function(app) {
 	app.post('/api/friends', function(req, res) {
 		
 		var userInput = req.body;
-		
 		var userResponses = userInput.scores;
 		
 		// Compute Match
 		var matchName = '';
-		var matchImage = '';
-		var totalDifference = 40;
+		var matchPhoto = '';
+		var totalDifference = 1000;
 
 		// Examine all existing friends in the list
 		for (var i = 0; i < friends.length; i++) {
@@ -36,7 +34,7 @@ module.exports = function(app) {
 				
 				totalDifference = diff;
 				matchName = friends[i].name;
-				matchImage = friends[i].photo;
+				matchPhoto = friends[i].photo;
 			}
 		}
 
@@ -44,6 +42,6 @@ module.exports = function(app) {
 		friends.push(userInput);
 
 		// Send Response
-		res.json({status: 'OK', matchName: matchName, matchImage: matchImage});
+		res.json({status: 'OK', matchName: matchName, matchPhoto: matchPhoto});
 	});
 };

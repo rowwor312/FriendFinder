@@ -2,12 +2,16 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>FriendFinder</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
         <script src="https://code.jquery.com/jquery.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.css">
+        <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/cerulean/bootstrap.min.css" rel="stylesheet" integrity="sha384-zF4BRsG/fLiTGfR9QL82DrilZxrwgY/+du4p/c7J72zZj+FLYq4zY00RylP9ZjiT" crossorigin="anonymous">
+		<script src="https://code.jquery.com/jquery.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.jquery.min.js"></script>
     </head>
     <body style>
@@ -152,6 +156,23 @@
                     </select>
                 </div>
 
+                <!-- Modal -->
+        <div class="modal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title"></h4>
+                        </div>
+                        <div class="modal-body text-center">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
                 <br>
                 <div>
                     <button type="submit" class="btn btn-danger btn-lg btn-block" id="submit">Submit</button>
@@ -186,5 +207,80 @@
     </div>
 </div>
         </div>
+
+        <script type="text/javascript">
+            // Listener for submit button click
+            $('#submit').on('click', function(event) {
+                    // prevents the default submit button action
+                event.preventDefault();
+                // Set local variables
+                var matchStatus = $('.modal-title');
+                var modalBody = $('.modal-body');
+                // set responses to local variables
+                var name = $('#name').val().trim();
+                var photo = $('#photo').val();
+                var question1 = parseInt($('#question1').val());
+                var question2 = parseInt($('#question2').val());
+                var question3 = parseInt($('#question3').val());
+                var question4 = parseInt($('#question4').val());
+                var question5 = parseInt($('#question5').val());
+                var question6 = parseInt($('#question6').val());
+                var question7 = parseInt($('#question7').val());
+                var question8 = parseInt($('#question8').val());
+                var question9 = parseInt($('#question9').val());
+                var question10 = parseInt($('#question10').val());
+                // Set data to be sent to server
+                var userData = {
+                    name: name,
+                    photo: photo,
+                    scores: [
+                        question1,
+                        question2,
+                        question3,
+                        question4,
+                        question5,
+                        question6,
+                        question7,
+                        question8,
+                        question9,
+                        question10
+                    ]
+                };
+                // If responses are valid...
+                if (
+                    (name !== '') && (photo !== '') && (!isNaN(question1)) &&
+                    (!isNaN(question2)) && (!isNaN(question3)) && (!isNaN(question4)) &&
+                    (!isNaN(question5)) && (!isNaN(question6)) && (!isNaN(question7)) &&
+                    (!isNaN(question8)) && (!isNaN(question9)) && (!isNaN(question10))
+                ) {
+                    // Grab the URL of the website
+                    var currentURL = window.location.origin;
+                    // AJAX post the data to the friends API. 
+                    $.post(currentURL + "/api/friends", userData, function(data) {
+                            // If the data has a match, then show this
+                        if (data.name !== undefined) {
+                            matchStatus.html('Your match...');
+                            modalBody.html('<p>...is ' + data.name + '!</p><img src="' + data.photo + '" height="200">');
+                        } else {
+                            // If no match, show this
+                            matchStatus.html('Not enough data!');
+                            modalBody.html('<p>Unfortunately there is not yet enough user data to match you</p>');
+                        }
+                        // Toggle modal on
+                        $('.modal').modal('toggle');
+                    });
+                } else {
+                        // If the form was not valid, this error is shown
+                    matchStatus.html('Error...');
+                    modalBody.html('Please answer all questions on the form.');
+                    // Toggle modal on
+                    $('.modal').modal('toggle');
+                }
+            });
+            $('#friend-form').reset();
+            </script>
+
+
+
     </body>
 </html>
