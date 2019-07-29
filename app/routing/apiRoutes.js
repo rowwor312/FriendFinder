@@ -1,6 +1,6 @@
 var path = require('path');
 
-var friends = require('../data/friends.js');
+var friends = require('../data/friends.js').default;
 
 // Export API Routes
 module.exports = function(app) {

@@ -1,7 +1,6 @@
-// Data structure that will store the friends data
 var friendsArray = [
-	{
-		name: 'Spike Spiegel - Cowboy Bebop',
+    {
+		name: "Spike Spiegel - Cowboy Bebop",
 		photo: 'http://s3.zerochan.net/Spike.Spiegel.240.1833372.jpg',
 		scores: [
 			'5',
@@ -79,9 +78,9 @@ var friendsArray = [
 			'5',
 			'5'
 		]
-	},
-	
-		
-];
+	}
+
+]
 
 module.exports = friendsArray;
+  
